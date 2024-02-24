@@ -12,22 +12,24 @@ class MyApp extends Homey.App {
    */
   async onInit() {
     this.log('Start MyApp onInit ');
-    // const api = await HomeyAPI.forCurrentHomey( this.homey );
-    // this.api = await HomeyAPI.createAppAPI({ homey: this.homey });
+    // Create a HomeyAPI instance. Ensure your app has the `homey:manager:api` permission.
 
-    this.api = await HomeyAPI.createAppAPI({
+    this.homeyApi = await HomeyAPI.createAppAPI({
       homey: this.homey, 
       debug: true 
     });
   
-   this.devices = await this.api.devices.getDevices();
-   // this.log('devices: ', devices);
-   this.systemInfo = await this.api.system.getInfo( ).catch( this.error );
-   this.log('systemInfo homeyModelName: ', this.systemInfo.homeyModelName);
-   this.storageInfo = await this.api.system.getStorageInfo( ).catch( this.error );
-   this.log('storageInfo: ', this.storageInfo);
+    // Get all the devices, and log their names.
+    const devices = await this.homeyApi.devices.getDevices();
+    for(const device of Object.values(devices)) {
+      this.log(device.name);
+    }
+    const systemInfo = await this.homeyApi.system.getInfo( ).catch( this.error );
+    this.log('systemInfo homeyModelName: ', systemInfo.homeyModelName);
+    const storageInfo = await this.homeyApi.system.getStorageInfo( ).catch( this.error );
+    this.log('storageInfo: ', storageInfo);
 
-   this.log('MyApp has been initialized');
+    this.log('MyApp has been initialized');
   }
 }
 
