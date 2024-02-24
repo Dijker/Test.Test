@@ -57,7 +57,6 @@ PS C:\Homey\GH2024\tes.test> homey app run     --remote
 2024-02-24T22:50:33.068Z [log] [MyApp] 2 My Homey (2019)
 2024-02-24T22:50:33.072Z [log] [MyApp] Virtuele Schakelaar
 [...]
-]
 2024-02-24T22:50:33.181Z [log] [MyApp] Motion sensor
 2024-02-24T22:50:33.183Z [log] [MyApp] [homey-api] GET http://localhost:80/api/manager/system/
 2024-02-24T22:50:33.256Z [log] [MyApp] [homey-api] [ManagerSystem] getInfo took 73ms
